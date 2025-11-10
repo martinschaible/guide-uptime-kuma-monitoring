@@ -63,9 +63,15 @@ I find some of the default values ​​for an SNMP monitor to be far too low. M
 :point_right:  A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
 
 ### Monitoring Memory
-We are interested in the available free RAM. We want to know what percentage is still available.
+We are interested in the available **free RAM**. We want to know what percentage is still available.
 
-First, let's find out how much RAM the server has available: Enter `free` on the command line. The results will be given in *KB*.
+First, let's find out how much RAM the server has available: Enter `free` on the command line. The results will be given in *KB*. It could look something like this:
+
+```
+               total        used        free      shared  buff/cache   available
+Mem:         3645096      983900      908224      109888     1928288     2661196
+```
+This is a server with 4 GB of RAM, and slightly more than 900 MB of RAM is currently free.
 
 To enable Uptime Kuma to read the available memory using SNMP, we need to use the appropriate *Object Identifier*: **1.3.6.1.4.1.2021.4.6.0**.<br>
 We can try this manually right on the command line:
@@ -96,3 +102,6 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
 
 :bulb: I find it easier to **clone** an existing monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
+
+## Links
+[Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
