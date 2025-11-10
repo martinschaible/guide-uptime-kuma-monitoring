@@ -80,7 +80,6 @@ UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
 ```
 This value should be approximately the same as the value of *free* from the previous command.
 
-
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
 :small_blue_diamond: You could use *Free Memory* as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
@@ -95,3 +94,5 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :small_blue_diamond: The condition is **greater than**, choose *\>*<br>
 
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
+
+:bulb: I find it easier to **clone** an existing monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
