@@ -81,8 +81,9 @@ This value should be approximately the same as the value of *free* from the prev
 :small_blue_diamond: Enter *1.3.6.1.4.1.2021.4.6.0* as the **OID (Object Identifier)**.<br>
 
 Now it gets interesting: Kuma receives the SNMP data in **JSON format**, for whatever reason.
-We now set a condition at which a certain number triggers an alarm. I've chosen *20%*, which can be considered a *warning* but not yet a *critical* level.
+We now set the condition under which an alarm is triggered. I've chosen *20%*, which can be considered a *warning* but not yet a *critical* level.
 
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose *\>*<br>
 
+:exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
