@@ -23,6 +23,8 @@ First, we'll add a simple **ping** to each server. This is the simplest way to t
 :small_blue_diamond: I increased the **Heartbeat Interval** to *90 Seconds*. That's more than enough and reduces the load and network traffic a bit.<br>
 :small_blue_diamond: To minimize false alarms, I increased the **Retries** value to **5**. I left the **Heartbeat Retry Interval** at *60 seconds*.<br>
 
+:point_right:I prefer to use the **IP address** instead of the hostname. Why? The hostname might temporarily be unresolvable by the DNS. That would create a false alarm and raise blood pressure unnecessarily.<br>
+
 :point_right: With this configuration, a ping alert will be triggered if no response occurs within 5 minutes.<br>
 :point_right: This allows, for example, a server restart without triggering any alerts.<br>
 
@@ -66,6 +68,13 @@ snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.4.6.0
 
 For *\<SNMPCommunity\>*, you enter the value that is stored as *community* in the file `/etc/snmp/snmp.conf`. I'm sure you're not using *public*, right?<br>
 As a result, you will get something like this:
+
+:small_blue_diamond: Now let's create a new monitor of type **SNMP*.<br>
+:small_blue_diamond: You could use *Free Memory* as the **Friendly Name**.<br>
+:small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
+:small_blue_diamond: We will leave the *Port* and the *SNMP version* at their default values.<br>
+:small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
+:small_blue_diamond: Enter *1.3.6.1.4.1.2021.4.6.0* as the **OID (Object Identifier)**.<br>
 
 ```
 UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
