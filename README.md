@@ -55,7 +55,7 @@ Now it gets interesting and also a bit complicated. Generally speaking, SNMP is 
 
 I assume you've already configured SNMP on the servers. **UDP port 161** must be open on the firewall. I'm limiting this to the IP address of the server running Uptime Kuma.
 
-I find some of the default values ​​for an SNMP monitor to be far too low. My values ​​are:
+I find some of the default values ​​for an SNMP monitor to be far too low. My values ​​are:<br>
 :small_blue_diamond: The value of the **Heartbeat Interval** field is set to *90 seconds*.<br>
 :small_blue_diamond: The value of the **Retries** field is set to *5*<br>
 :small_blue_diamond: The value of the **Heartbeat Retry** field is set to *60 seconds*.<br>
