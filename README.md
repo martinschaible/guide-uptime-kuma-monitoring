@@ -57,17 +57,21 @@ I assume you've already configured SNMP on the servers. **UDP port 161** must be
 ### Monitoring Memory
 We are interested in the available free RAM. We want to know what percentage is still available.
 
-First, let's find out how much RAM the server has available: Enter `free` on the command line. The result will be given in *KB*.
+First, let's find out how much RAM the server has available: Enter `free` on the command line. The results will be given in *KB*.
 
 To enable Uptime Kuma to read the available memory using SNMP, we need to use the appropriate *Object Identifier*: **1.3.6.1.4.1.2021.4.6.0**.<br>
 We can try this manually right on the command line:
-
-For *\<SNMPCommunity\>*, you enter the value that is stored as *community* in the file `/etc/snmp/snmp.conf`. I'm sure you're not using *public*, right?<br>
-As a result, you will get something like this:
-
 ```
 snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.4.6.0
 ```
+
+For *\<SNMPCommunity\>*, you enter the value that is stored as *community* in the file `/etc/snmp/snmp.conf`. I'm sure you're not using *public*, right?<br>
+As a result, you will get something like this:
+```
+UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
+```
+This value should be approximately the same as the value of *free* from the previous command.
+
 
 :small_blue_diamond: Now let's create a new monitor of type **SNMP*.<br>
 :small_blue_diamond: You could use *Free Memory* as the **Friendly Name**.<br>
@@ -76,8 +80,9 @@ snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.4.6.0
 :small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
 :small_blue_diamond: Enter *1.3.6.1.4.1.2021.4.6.0* as the **OID (Object Identifier)**.<br>
 
-```
-UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
-```
-This value should be approximately the same as the value of *free* from the previous command.
+Now it gets interesting: Kuma receives the SNMP data in **JSON format**, for whatever reason.
+We now set a condition at which a certain number triggers an alarm. I've chosen *20%*, which can be considered a *warning* but not yet a *critical* level.
+
+:small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
+:small_blue_diamond: The condition is **greater than**, choose *\>*<br>
 
