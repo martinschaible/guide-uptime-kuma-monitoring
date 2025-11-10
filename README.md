@@ -34,14 +34,17 @@ I'm choosing one website per server, each with either an online store or a CMS l
 
 :small_blue_diamond: Now create a monitor of type **HTTP(s) - Keyword**.<br>
 :small_blue_diamond: I usually use the domain name as the **Friendly Name**, i.e., *mydomain.ch*.<br>
+:small_blue_diamond: Now you need to choose a **keyword** from the website. I always choose a *word* or *phrase* from the very bottom of the website.<br>
 :small_blue_diamond: In the **URL** field, you enter the full address of the website, i.e., *https://www.mydomain.ch*.<br>
 :small_blue_diamond: In the **Heartbeat Interval** field, I set the value to *300 seconds*.<br>
 :small_blue_diamond: I leave the **Retries** value at *1* and the **Heartbeat Retry** value at *60*.<br>
 
-:exclamation: We store this monitor under **Monitor Group** *<ServerName>/Websites*<br>
+:exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/Websites*<br>
 
 :point_right: I don't see the point in checking the website every minute. That only increases the chance of false alarms.<br>
 :point_right: With this configuration, an alarm is triggered after **10 minutes**. After that, checks are performed every minute.<br>
 :point_right: This allows for brief website maintenance without causing panic.<br>
+
+:exclamation: Some websites cannot be analyzed using a keyword. In those cases, I use the simple monitor type **HTTP(s)**.<br>
 
 ## Monitoring with SNMP 
