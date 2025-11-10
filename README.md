@@ -62,12 +62,12 @@ First, let's find out how much RAM the server has available: Enter `free` on the
 To enable Uptime Kuma to read the available memory using SNMP, we need to use the appropriate *Object Identifier*: **1.3.6.1.4.1.2021.4.6.0**.<br>
 We can try this manually right on the command line:
 
+For *\<SNMPCommunity\>*, you enter the value that is stored as *community* in the file `/etc/snmp/snmp.conf`. I'm sure you're not using *public*, right?<br>
+As a result, you will get something like this:
+
 ```
 snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.4.6.0
 ```
-
-For *\<SNMPCommunity\>*, you enter the value that is stored as *community* in the file `/etc/snmp/snmp.conf`. I'm sure you're not using *public*, right?<br>
-As a result, you will get something like this:
 
 :small_blue_diamond: Now let's create a new monitor of type **SNMP*.<br>
 :small_blue_diamond: You could use *Free Memory* as the **Friendly Name**.<br>
