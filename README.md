@@ -8,11 +8,12 @@ Smaller companies with just a few servers and limited budgets often prefer to av
 :collision: To be able to react quickly to errors and failures, a few checks are sufficient, which can be accomplished with SNMP.
 
 ## Basics
-Before we begin monitoring, let's start with some organizational steps:
+Before we begin monitoring, let's start with some organizational steps. To keep track of everything, it makes sense to store the different sensors in appropriate *folders*. We use a **Group Monitor* for each one:
 
 :small_blue_diamond: Create a new **Monitor** of type **Group** for each server. Use the server name as the **Friendly Name**.<br>
 :small_blue_diamond: Below this group, create the groups **SNMP** and **Websites**.<br>
 
+:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. This makes absolutely no sense for groups, because it would result in unnecessary notifications being sent. Therefore, we disable *notifications* in every group.
 :point_right: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
 
 ## Ping
@@ -54,6 +55,13 @@ Now it gets interesting and also a bit complicated. Generally speaking, SNMP is 
 
 I assume you've already configured SNMP on the servers. **UDP port 161** must be open on the firewall. I'm limiting this to the IP address of the server running Uptime Kuma.
 
+I find some of the default values ​​for an SNMP monitor to be far too low. My values ​​are:
+:small_blue_diamond: The value of the **Heartbeat Interval** field is set to *90 seconds*.<br>
+:small_blue_diamond: The value of the **Retries** field is set to *5*<br>
+:small_blue_diamond: The value of the **Heartbeat Retry** field is set to *60 seconds*.<br>
+
+:point_right:  A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
+
 ### Monitoring Memory
 We are interested in the available free RAM. We want to know what percentage is still available.
 
@@ -73,7 +81,7 @@ UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
 This value should be approximately the same as the value of *free* from the previous command.
 
 
-:small_blue_diamond: Now let's create a new monitor of type **SNMP*.<br>
+:small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
 :small_blue_diamond: You could use *Free Memory* as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
 :small_blue_diamond: We will leave the *Port* and the *SNMP version* at their default values.<br>
