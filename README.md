@@ -103,9 +103,9 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 
 :bulb: I find it easier to **clone** an existing monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
-## Links
 :link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
 
+----
 :collision: If you find a mistake or any text is not understandable, please open an issue.
 
 <p align="center">Made with :heart: and :coffee:</p>
