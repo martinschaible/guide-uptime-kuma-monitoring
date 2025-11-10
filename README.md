@@ -1,7 +1,7 @@
 ## Uptime Kuma is here!
 In this article, you'll learn how to monitor websites and servers using **Uptime Kuma**.
 
-Monitoring a server using SNMP isn't exactly modern, and specialized monitoring software solves this problem with agents that are installed on the target system.
+Monitoring a server using **SNMP** isn't exactly modern. Specialized monitoring software solves this problem with agents that are installed on the target system.
 
 Smaller companies with just a few servers and limited budgets often prefer to avoid expensive and overly complex monitoring software.
 
@@ -29,5 +29,13 @@ First, we'll add a simple **ping** to each server. This is the simplest way to t
 :exclamation: We save the ping monitor directly in the server's group.
 
 ## Monitoring Websites
+From a technical perspective, what kind of websites should be monitored? The database could fail, the web server could malfunction, or the software could have a problem.
+I'm choosing one website per server, each with either an online store or a CMS like WordPress. Then I monitor the websites that are likely to be important.
+
+:small_blue_diamond: Now create a monitor of type **HTTP(s) - Keyword**.<br>
+:small_blue_diamond: I usually use the domain name as the **Friendly Name**, i.e., *mydomain.ch*.<br>
+:small_blue_diamond: In the **URL** field, you enter the full address of the website, i.e., *https://www.mydomain.ch*.<br>
+:small_blue_diamond: In the **Heartbeat Interval** field, I set the value to *300 seconds*.<br>
+:small_blue_diamond: I leave the **Retries** value at *1* and the **Heartbeat Retry** value at *60*.<br>
 
 ## Monitoring with SNMP 
