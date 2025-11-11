@@ -13,7 +13,7 @@ Before we begin monitoring, let's start with some organizational steps. To keep 
 :small_blue_diamond: Create a new **Monitor** of type **Group** for each server. Use the server name as the **Friendly Name**.<br>
 :small_blue_diamond: Below this group, create the groups **SNMP** and **Websites**.<br>
 
-:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. This makes absolutely no sense for groups, because it would result in unnecessary notifications being sent. Therefore, we disable *notifications* in every group.
+:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. This makes absolutely no sense for groups, because it would result in unnecessary notifications being sent. Therefore, we disable *notifications* in every group.<br>
 :point_right: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
 
 ## Ping
@@ -93,7 +93,6 @@ This value should be approximately the same as the value of *free* from the prev
 :small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
 :small_blue_diamond: Enter *1.3.6.1.4.1.2021.4.6.0* as the **OID (Object Identifier)**.<br>
 
-Now it gets interesting: Kuma receives the SNMP data in **JSON format**, for whatever reason.
 We now set the condition under which an alarm is triggered. I've chosen *20%*, which can be considered a *warning* but not yet a *critical* level.
 
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
@@ -104,6 +103,10 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :bulb: I find it easier to **clone** an existing monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
 :link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
+
+## Disadvantages, minor problems
+:bomb: Uptime Kuma receives the SNMP data in **JSON format** and treats all values ​​as **strings**. This works fine until the values ​​are in decimal format. Then, comparisons become inaccurate. This affects, for example, the monitor for CPU load. The value might be **2.45**, which isn't suitable for string comparison. In that case, only the value **2** remains.<br>
+:bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. But that's acceptable for free software.<br>
 
 ----
 :collision: If you find a mistake or any text is not understandable, please open an issue.
