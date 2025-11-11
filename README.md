@@ -140,8 +140,52 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 :small_blue_diamond: Enter the appropriate value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
 
+:exclamation: The monitor can now be saved.<br>
+
 ### Monitoring systemd Services
-This requires preparation on the target servers.
+This requires preparation on the target servers. First, we need to find out the names of the different processes we want to monitor. To do this, check which processes are running:
+```
+ps -e
+```
+
+Now we will edit the file `/etc/snmp/snmpd.conf` and add a few lines. I have already entered the most important and common processes that one would typically want to monitor.<br>
+Add these lines to the end of the file:<br>
+
+```
+# Process checks
+# -----------------------------------------------------------------------------
+
+# Use ps -e to get running processes
+
+# proc name x y
+# x = Not more then x name running
+# y = At least x name running, but less/equal y running
+
+proc backup-tool
+proc crowdsec
+proc crowdsec-firewa
+proc DigitalRuby.IPB
+proc directadmin
+proc httpd
+proc java
+proc mariadbd
+proc mysqld
+proc named
+proc nginx
+proc php-fpm
+proc proftpd
+proc python3
+proc rspamd
+proc redis-server
+proc sshd
+```
+
+Now the SNMP service must be restarted:
+```
+systemctl restart snmpd
+```
+
+
 
 ### Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
