@@ -148,7 +148,7 @@ This requires preparation on the target servers. First, we need to find out the 
 ps -e
 ```
 
-Now we will edit the file `/etc/snmp/snmpd.conf` and add a few lines. I have already entered the most important and common processes that one would typically want to monitor.<br>
+Now we will edit the file `/etc/snmp/snmpd.conf` and add a few lines. I have already entered the most important and common processes that we would typically want to monitor.<br>
 Add these lines to the end of the file:<br>
 
 ```
@@ -162,9 +162,6 @@ Add these lines to the end of the file:<br>
 # y = At least x name running, but less/equal y running
 
 proc backup-tool
-proc crowdsec
-proc crowdsec-firewa
-proc DigitalRuby.IPB
 proc directadmin
 proc httpd
 proc java
