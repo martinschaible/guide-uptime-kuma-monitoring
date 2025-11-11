@@ -99,7 +99,7 @@ This value should be approximately the same as the value of *free* from the prev
 We now set the condition under which an alarm is triggered. I've chosen *20%*, which can be considered a *warning* but not yet a *critical* level.
 
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
-:small_blue_diamond: The condition is **greater than**, choose *\>*<br>
+:small_blue_diamond: The condition is **greater than**, choose **\>**<br>
 
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
 
@@ -128,13 +128,23 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 
 We now set the condition under which an alarm is triggered. This will now be a little more complicated, because the number depends on the number of cores in the processor.
 
+Recommendation:<br>
+:small_orange_diamond: 2 Cores :point_right: Value: 3<br>
+:small_orange_diamond: 4 Cores :point_right: Value: 5<br>
+:small_orange_diamond: 6 Cores :point_right: Value: 7<br>
+:small_orange_diamond: 8 Cores :point_right: Value: 10<br>
+:small_orange_diamond: 16 Cores :point_right: Value: 20<br>
+
+The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>
+
+:small_blue_diamond: Enter the appropriate value as the **Expected Value**.<br>
+:small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
 
 ### Monitoring systemd Services
 This requires preparation on the target servers.
 
 ### Tips
-:bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor.<br>
-Only the *IP address* and the *Expected Value* need to be adjusted.<br>
+:bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
 
 ## Disadvantages, minor problems
