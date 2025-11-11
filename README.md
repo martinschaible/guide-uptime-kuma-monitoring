@@ -74,6 +74,9 @@ Mem:         3645096      983900      908224      109888     1928288     2661196
 This is a server with 4 GB of RAM, and slightly more than 900 MB of RAM is currently free.
 
 To enable Uptime Kuma to read the available memory using SNMP, we need to use the appropriate *Object Identifier*: **1.3.6.1.4.1.2021.4.6.0**.<br>
+
+The official description of this OID is: **"The amount of real/physical memory currently unused or available"**.
+
 We can try this manually right on the command line:
 ```
 snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.4.6.0
@@ -100,13 +103,39 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
 
-:bulb: I find it easier to **clone** an existing monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
-
 :link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
 
-### Monitoring Memory
+### Monitoring CPU Load
+The appropriate OID is: **1.3.6.1.4.1.2021.10.1.3.2**.
+We can check that directly on the server:
+```
+snmpget -v 2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.10.1.3.2
+```
+
+As a result, you will get something like this:
+```
+UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
+```
+
+:small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
+:small_blue_diamond: You could use *CPU Load* as the **Friendly Name**.<br>
+:small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
+:small_blue_diamond: We will leave the *Port* and the *SNMP version* at their default values.<br>
+:small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
+:small_blue_diamond: Enter *1.3.6.1.4.1.2021.10.1.3.2* as the **OID (Object Identifier)**.<br>
 
 :link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
+
+We now set the condition under which an alarm is triggered. This will now be a little more complicated, because the number depends on the number of cores in the processor.
+
+
+### Monitoring systemd Services
+This requires preparation on the target servers.
+
+### Tips
+:bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor.<br>
+Only the *IP address* and the *Expected Value* need to be adjusted.<br>
+
 
 ## Disadvantages, minor problems
 :bomb: Uptime Kuma receives the SNMP data in **JSON format** and treats all values ​​as **strings**. This works fine until the values ​​are in decimal format. Then, comparisons become inaccurate. This affects, for example, the monitor for CPU load. The value might be **2.45**, which isn't suitable for string comparison. In that case, only the value **2** remains.<br>
