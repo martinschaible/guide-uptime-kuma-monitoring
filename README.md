@@ -129,13 +129,13 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 We now set the condition under which an alarm is triggered. This will now be a little more complicated, because the number depends on the number of cores in the processor.
 
 Recommendation:<br>
-:small_orange_diamond: 2 Cores :point_right: Value: 3<br>
-:small_orange_diamond: 4 Cores :point_right: Value: 5<br>
-:small_orange_diamond: 6 Cores :point_right: Value: 7<br>
-:small_orange_diamond: 8 Cores :point_right: Value: 10<br>
-:small_orange_diamond: 16 Cores :point_right: Value: 20<br>
+:small_orange_diamond: 2 Cores - Value: 3<br>
+:small_orange_diamond: 4 Cores - Value: 5<br>
+:small_orange_diamond: 6 Cores - Value: 7<br>
+:small_orange_diamond: 8 Cores - Value: 10<br>
+:small_orange_diamond: 16 Cores - Value: 20<br>
 
-The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>
+The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>With these values, a CPU is already operating under a fairly heavy, but manageable load.<br>
 
 :small_blue_diamond: Enter the appropriate value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
