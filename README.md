@@ -104,6 +104,10 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 
 :link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
 
+### Monitoring Memory
+
+:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
+
 ## Disadvantages, minor problems
 :bomb: Uptime Kuma receives the SNMP data in **JSON format** and treats all values ​​as **strings**. This works fine until the values ​​are in decimal format. Then, comparisons become inaccurate. This affects, for example, the monitor for CPU load. The value might be **2.45**, which isn't suitable for string comparison. In that case, only the value **2** remains.<br>
 :bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. But that's acceptable for free software.<br>
