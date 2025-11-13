@@ -151,6 +151,61 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 
 :link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
 
+### Monitoring Disk Space
+A proper SNMP monitoring system would calculate the free disk space itself. With Kuma, we have to do it manually.
+
+First, we determine the partition that should be monitored. To do this, execute the following command on the target system:
+```
+df
+```
+Here we see an overview of the filesystem. We are interested in **/dev/sda1** mounted as **/**, the root partition.
+Let's query this information via SNMP:
+
+```
+snmpwalk -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.3
+```
+
+We see the partition labels and mount points.
+Depending on the server, it looks like this:
+```
+HOST-RESOURCES-MIB::hrStorageDescr.1 = STRING: Physical memory
+HOST-RESOURCES-MIB::hrStorageDescr.3 = STRING: Virtual memory
+HOST-RESOURCES-MIB::hrStorageDescr.6 = STRING: Memory buffers
+HOST-RESOURCES-MIB::hrStorageDescr.7 = STRING: Cached memory
+HOST-RESOURCES-MIB::hrStorageDescr.8 = STRING: Shared memory
+HOST-RESOURCES-MIB::hrStorageDescr.10 = STRING: Swap space
+HOST-RESOURCES-MIB::hrStorageDescr.11 = STRING: Available memory
+HOST-RESOURCES-MIB::hrStorageDescr.31 = STRING: /
+HOST-RESOURCES-MIB::hrStorageDescr.33 = STRING: /dev/shm
+HOST-RESOURCES-MIB::hrStorageDescr.42 = STRING: /run
+HOST-RESOURCES-MIB::hrStorageDescr.49 = STRING: /run/credentials/systemd-journald.service
+HOST-RESOURCES-MIB::hrStorageDescr.51 = STRING: /boot/efi
+HOST-RESOURCES-MIB::hrStorageDescr.52 = STRING: /run/credentials/getty@tty1.service
+HOST-RESOURCES-MIB::hrStorageDescr.53 = STRING: /run/credentials/serial-getty@ttyS0.service
+HOST-RESOURCES-MIB::hrStorageDescr.54 = STRING: /run/user/0
+```
+We are interested in index **31**.
+
+Now nothing stands in our way of querying three data sets:
+
+:small_orange_diamond: Total size in allocation units:
+
+```
+snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.5.31
+```
+
+:small_orange_diamond: Used allocation units:
+
+```
+snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.6.31
+```
+
+:small_orange_diamond: Allocation unit size (in bytes):
+
+```
+snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.4.31
+```
+
 ### Monitoring systemd Services
 This requires preparation on the target servers. First, we need to find out the names of the different processes we want to monitor. To do this, check which processes are running:
 ```
