@@ -266,8 +266,17 @@ Setting the condition is incredibly simple:
 
 :link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
 
+## Notification
+Notifications via Telegram, for example, are incomplete. This is likely because I've organized the monitors into groups.
+:point_right: When an SNMP monitor triggers an alarm, the originating host isn't displayed.
 
-### Tips
+Therefore, it's necessary to use the **Custom Message Template".
+
+:small_blue_diamond: Open the **Notification** entry under **Settings** and select your previously created profile.<br>
+:small_blue_diamond: Enable **Use custom message template**<br>
+:small_blue_diamond: For Telegram, I select **MarkdownV2** as the message format.<br>
+
+## Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
 
