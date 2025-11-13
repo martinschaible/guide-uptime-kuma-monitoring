@@ -195,7 +195,7 @@ systemctl restart snmpd
 
 We can now easily check if this configuration works. Run the following command at the prompt:
 ```
-snmpwalk -v2c -c public localhost 1.3.6.1.4.1.2021.2.1.2
+snmpwalk -v2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.2.1.2
 ```
 
 You will now receive a list of the services listed in the file `/etc/snmp/snmpd.conf`:
@@ -221,7 +221,7 @@ UCD-SNMP-MIB::prNames.16 = STRING: valkey-server
 
 We can check which services are running:
 ```
-snmpwalk -v2c -c public localhost 1.3.6.1.4.1.2021.2.1.5
+snmpwalk -v2c -c <SNMPCommunity> localhost 1.3.6.1.4.1.2021.2.1.5
 ```
 
 The number shows the number of running instances of the associated service.
