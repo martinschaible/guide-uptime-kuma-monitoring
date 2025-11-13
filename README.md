@@ -171,6 +171,7 @@ Add these lines to the end of the file:<br>
 # y = At least x name running, but less/equal y running
 
 proc backup-tool
+proc DigitalRuby.IPB
 proc directadmin
 proc httpd
 proc java
@@ -184,6 +185,7 @@ proc python3
 proc rspamd
 proc redis-server
 proc sshd
+proc valkey-server
 ```
 
 Now the SNMP service must be restarted:
@@ -191,7 +193,61 @@ Now the SNMP service must be restarted:
 systemctl restart snmpd
 ```
 
+We can now easily check if this configuration works. Run the following command at the prompt:
+```
+snmpwalk -v2c -c public localhost 1.3.6.1.4.1.2021.2.1.2
+```
 
+You will now receive a list of the services listed in the file `/etc/snmp/snmpd.conf`:
+
+```
+UCD-SNMP-MIB::prNames.1 = STRING: backup-tool
+UCD-SNMP-MIB::prNames.2 = STRING: DigitalRuby.IPB
+UCD-SNMP-MIB::prNames.3 = STRING: directadmin
+UCD-SNMP-MIB::prNames.4 = STRING: httpd
+UCD-SNMP-MIB::prNames.5 = STRING: java
+UCD-SNMP-MIB::prNames.6 = STRING: mariadbd
+UCD-SNMP-MIB::prNames.7 = STRING: mysqld
+UCD-SNMP-MIB::prNames.8 = STRING: named
+UCD-SNMP-MIB::prNames.9 = STRING: nginx
+UCD-SNMP-MIB::prNames.10 = STRING: php-fpm
+UCD-SNMP-MIB::prNames.11 = STRING: proftpd
+UCD-SNMP-MIB::prNames.12 = STRING: python3
+UCD-SNMP-MIB::prNames.13 = STRING: rspamd
+UCD-SNMP-MIB::prNames.14 = STRING: redis-server
+UCD-SNMP-MIB::prNames.15 = STRING: sshd
+UCD-SNMP-MIB::prNames.16 = STRING: valkey-server
+```
+
+We can check which services are running:
+```
+snmpwalk -v2c -c public localhost 1.3.6.1.4.1.2021.2.1.5
+```
+
+The number shows the number of running instances of the associated service.
+For example: Java is not running and two instances of the backup software are running:
+
+```
+UCD-SNMP-MIB::prCount.1 = INTEGER: 2
+UCD-SNMP-MIB::prCount.2 = INTEGER: 1
+UCD-SNMP-MIB::prCount.3 = INTEGER: 0
+UCD-SNMP-MIB::prCount.4 = INTEGER: 0
+UCD-SNMP-MIB::prCount.5 = INTEGER: 0
+UCD-SNMP-MIB::prCount.6 = INTEGER: 0
+UCD-SNMP-MIB::prCount.7 = INTEGER: 0
+UCD-SNMP-MIB::prCount.8 = INTEGER: 0
+UCD-SNMP-MIB::prCount.9 = INTEGER: 0
+UCD-SNMP-MIB::prCount.10 = INTEGER: 0
+UCD-SNMP-MIB::prCount.11 = INTEGER: 0
+UCD-SNMP-MIB::prCount.12 = INTEGER: 0
+UCD-SNMP-MIB::prCount.13 = INTEGER: 0
+UCD-SNMP-MIB::prCount.14 = INTEGER: 0
+UCD-SNMP-MIB::prCount.15 = INTEGER: 1
+UCD-SNMP-MIB::prCount.16 = INTEGER: 0
+```
+
+This is something we can work with: We use the OID **1.3.6.1.4.1.2021.2.1.5** and append the service index to the end. For Java, that's the **5th**.
+The complete OID is then: **1.3.6.1.4.1.2021.2.1.5.5**
 
 ### Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
