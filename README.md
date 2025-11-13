@@ -13,7 +13,10 @@ Before we begin monitoring, let's start with some organizational steps. To keep 
 :small_blue_diamond: Create a new **Monitor** of type **Group** for each server. Use the server name as the **Friendly Name**.<br>
 :small_blue_diamond: Below this group, create the groups **SNMP** and **Websites**.<br>
 
-:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. This makes absolutely no sense for groups, because it would result in unnecessary notifications being sent. Therefore, we disable *notifications* in every group.<br>
+:collision: Unfortunately, this has an inexplicable drawback: A monitor of type **Group** is treated as a normal monitor.<br>
+:collision: If one monitor in a group goes into alarm mode, the parent group also goes into alarm mode.
+
+:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. We disable *notifications* in every group.<br>
 :point_right: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
 
 ## Ping
@@ -104,6 +107,12 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
 
 :link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
+
+Recommendation for 20% (Warning):<br>
+:small_orange_diamond:  4 GByte - Value: 729000<br>
+:small_orange_diamond:  8 GByte - Value: 1531000<br>
+:small_orange_diamond: 16 GByte - Value: 3143000<br>
+:small_orange_diamond: 32 GByte - Value: 6400000<br>
 
 ### Monitoring CPU Load
 The appropriate OID is: **1.3.6.1.4.1.2021.10.1.3.2**.
