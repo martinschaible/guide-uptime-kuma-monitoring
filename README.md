@@ -270,7 +270,7 @@ Setting the condition is incredibly simple:
 Notifications via Telegram, for example, are incomplete. This is likely because I've organized the monitors into groups.
 :point_right: When an SNMP monitor triggers an alarm, the originating host isn't displayed.
 
-Therefore, it's necessary to use the **Custom Message Template".
+Therefore, it's necessary to use the **Custom Message Template**.
 
 :small_blue_diamond: Open the **Notification** entry under **Settings** and select your previously created profile.<br>
 :small_blue_diamond: Enable **Use custom message template**<br>
