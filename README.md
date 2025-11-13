@@ -249,6 +249,24 @@ UCD-SNMP-MIB::prCount.16 = INTEGER: 0
 This is something we can work with: We use the OID **1.3.6.1.4.1.2021.2.1.5** and append the service index to the end. For Java, that's the **5th**.
 The complete OID is then: **1.3.6.1.4.1.2021.2.1.5.5**
 
+Now let's create a new monitor. Let's use **nginx** (index 9) as an example:
+
+:small_blue_diamond: Create a new monitor of type **SNMP**.<br>
+:small_blue_diamond: You could use *Service nginx* as the **Friendly Name**.<br>
+:small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
+:small_blue_diamond: We will leave the *Port* and the *SNMP version* at their default values.<br>
+:small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
+:small_blue_diamond: Enter *1.3.6.1.4.1.2021.2.1.5.9* as the **OID (Object Identifier)**.<br>
+
+Setting the condition is incredibly simple:
+
+:small_blue_diamond: The condition is **not equal**, choose **!=**<br>
+
+:exclamation: The monitor can now be saved.<br>
+
+:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
+
+
 ### Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
