@@ -106,13 +106,13 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 
 :exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
 
-:link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
-
 Recommendation for 20% (Warning):<br>
 :small_orange_diamond:  4 GByte - Value: 729000<br>
 :small_orange_diamond:  8 GByte - Value: 1531000<br>
 :small_orange_diamond: 16 GByte - Value: 3143000<br>
 :small_orange_diamond: 32 GByte - Value: 6400000<br>
+
+:link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
 
 ### Monitoring CPU Load
 The appropriate OID is: **1.3.6.1.4.1.2021.10.1.3.2**.
@@ -133,8 +133,6 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 :small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
 :small_blue_diamond: Enter *1.3.6.1.4.1.2021.10.1.3.2* as the **OID (Object Identifier)**.<br>
 
-:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
-
 We now set the condition under which an alarm is triggered. This will now be a little more complicated, because the number depends on the number of cores in the processor.
 
 Recommendation:<br>
@@ -150,6 +148,8 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 :small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
 
 :exclamation: The monitor can now be saved.<br>
+
+:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
 
 ### Monitoring systemd Services
 This requires preparation on the target servers. First, we need to find out the names of the different processes we want to monitor. To do this, check which processes are running:
