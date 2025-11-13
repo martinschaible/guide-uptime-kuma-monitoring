@@ -63,7 +63,7 @@ I find some of the default values ​​for an SNMP monitor to be far too low. M
 :small_blue_diamond: The value of the **Retries** field is set to *5*<br>
 :small_blue_diamond: The value of the **Heartbeat Retry** field is set to *60 seconds*.<br>
 
-:point_right:  A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
+:point_right: A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
 
 ### Monitoring Memory
 We are interested in the available **free RAM**. We want to know what percentage is still available.
@@ -186,25 +186,40 @@ HOST-RESOURCES-MIB::hrStorageDescr.54 = STRING: /run/user/0
 ```
 We are interested in index **31**.
 
-Now nothing stands in our way of querying three data sets:
-
-:small_orange_diamond: Total size in allocation units:
-
-```
-snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.5.31
-```
-
-:small_orange_diamond: Used allocation units:
+Now nothing stands in our way of querying three data sets.
+The following three OIDs return the **total size in allocation units**, the **used allocation units** and the **allocation unit size (in bytes)**.
 
 ```
-snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.6.31
+snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.5.31
+snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.6.31
+snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.4.31
 ```
 
-:small_orange_diamond: Allocation unit size (in bytes):
+The result:
 
 ```
-snmpget -v2c -c <SNMPCommunity>  localhost 1.3.6.1.2.1.25.2.3.1.4.31
+HOST-RESOURCES-MIB::hrStorageSize.31 = INTEGER: 19649974
+HOST-RESOURCES-MIB::hrStorageUsed.31 = INTEGER: 840584
+HOST-RESOURCES-MIB::hrStorageAllocationUnits.31 = INTEGER: 4096 Bytes
 ```
+
+For the monitor in Kuma, we use the OID of the **used allocation units** and calculate the threshold from the "total size in allocation units" for 80% utilization.
+
+Now let's create the monitor:
+
+:small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
+:small_blue_diamond: You could use *Free Diskspace* as the **Friendly Name**.<br>
+:small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
+:small_blue_diamond: We will leave the *Port* and the *SNMP version* at their default values.<br>
+:small_blue_diamond: Now enter the name of your *SNMP community* in the **Community String** field.<br>
+:small_blue_diamond: Enter *1.3.6.1.2.1.25.2.3.1.6.31* as the **OID (Object Identifier)**.<br>
+
+:point_right: We take 20% of the **total size in allocation units*<br>
+
+:small_blue_diamond: Enter the calculated value as the **Expected Value**.<br>
+:small_blue_diamond: The condition is **greater than**, choose **\>**<br>
+
+:exclamation: The monitor can now be saved.<br>
 
 ### Monitoring systemd Services
 This requires preparation on the target servers. First, we need to find out the names of the different processes we want to monitor. To do this, check which processes are running:
