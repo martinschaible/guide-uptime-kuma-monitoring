@@ -17,7 +17,7 @@ Before we begin monitoring, let's start with some organizational steps. To keep 
 :collision: If one monitor in a group goes into alarm mode, the parent group also goes into alarm mode.
 
 You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled.<br>
-:white_check_mark:We disable *notifications* in every group.<br>
+:white_check_mark: We disable *notifications* in every group.<br>
 :white_check_mark: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
 
 ## Ping
@@ -44,9 +44,9 @@ I'm choosing one website per server, each with either an online store or a CMS l
 :small_blue_diamond: In the **Heartbeat Interval** field, I set the value to *300 seconds*.<br>
 :small_blue_diamond: I leave the **Retries** value at *1* and the **Heartbeat Retry** value at *60*.<br>
 
-:point_right: I don't see the point in checking the website every minute. That only increases the chance of false alarms.<br>
-:point_right: With this configuration, an alarm is triggered after **10 minutes**. After that, checks are performed every minute.<br>
-:point_right: This allows for brief website maintenance without causing panic.<br>
+I don't see the point in checking the website every minute. That only increases the chance of false alarms.<br>
+:white_check_mark: With this configuration, an alarm is triggered after **10 minutes**. After that, checks are performed every minute.<br>
+:white_check_mark: This allows for brief website maintenance without causing panic.<br>
 
 :point_right: Some websites cannot be analyzed using a keyword. In those cases, I use the simple monitor type **HTTP(s)**.<br>
 
