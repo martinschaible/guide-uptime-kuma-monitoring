@@ -221,7 +221,7 @@ Now let's create the monitor:
 :point_right: We take **80%** of the **total size in allocation units*<br>
 
 :small_blue_diamond: Enter the calculated value as the **Expected Value**.<br>
-:small_blue_diamond: The condition is **greater than**, choose **\>**. Remember the *Uptime Kuma SNMP logic*, as described above.<br>
+:small_blue_diamond: The condition is **smaller than**, choose **\<**. Remember the *Uptime Kuma SNMP logic*, as described above.<br>
 
 :point_right: The monitor can now be saved.<br>
 
