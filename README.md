@@ -117,8 +117,6 @@ Recommendation for 20% (Warning):<br>
 :small_orange_diamond: 16 GByte - Value: 3143000<br>
 :small_orange_diamond: 32 GByte - Value: 6400000<br>
 
-:link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
-
 ### Monitoring CPU Load
 The appropriate OID is: **1.3.6.1.4.1.2021.10.1.3.2**.
 We can check that directly on the server:
@@ -154,10 +152,9 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 
 :point_right: The monitor can now be saved.<br>
 
-:question: Wait a minute: Why is the condition **smaller than** and not **greater than**? That's Kuma logic:<br>
-
-
-:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
+:question: Wait a minute: Why is the condition **smaller than** and not **greater than**? That's Uptime Kuma SNMP logic:<br><br>
+:white_check_mark: TRUE = Everything is **OK**<br>
+:x: FALSE = ALARM<br>
 
 ### Monitoring Disk Space
 A proper SNMP monitoring system would calculate the free disk space itself. With Kuma, we have to do it manually.
@@ -342,8 +339,6 @@ Setting the condition is incredibly simple:
 
 :point_right: The monitor can now be saved.<br>
 
-:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
-
 ## Notification
 Notifications via Telegram, for example, are incomplete. This is likely because I've organized the monitors into groups.
 :point_right: When an SNMP monitor triggers an alarm, the originating host isn't displayed.
@@ -361,6 +356,11 @@ Therefore, it's necessary to use the **Custom Message Template**.
 ## Disadvantages, minor problems
 :bomb: Uptime Kuma receives the SNMP data in **JSON format** and treats all values ​​as **strings**. This works fine until the values ​​are in decimal format. Then, comparisons become inaccurate. This affects, for example, the monitor for CPU load. The value might be **2.45**, which isn't suitable for string comparison. In that case, only the value **2** remains.<br>
 :bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. But that's acceptable for free software.<br>
+
+## Links
+:link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
+:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
+:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
 
 ----
 :collision: If you find a mistake or any text is not understandable, please open an issue.
