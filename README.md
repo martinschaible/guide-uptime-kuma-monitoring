@@ -360,8 +360,9 @@ Therefore, it's necessary to use the **Custom Message Template**.
 
 ## Links
 :link: [Available Memory - Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)<br>
-:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)<br>
-:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)<br>
+:link: [CPU 5 minute Load - Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)<br>
+:link: [The number of current processes running with the name
+in question -Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)<br>
 
 ----
 :collision: If you find a mistake or any text is not understandable, please open an issue.
