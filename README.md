@@ -63,6 +63,15 @@ I find some of the default values ​​for an SNMP monitor to be far too low. M
 
 :point_right: A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
 
+### Hostname or IP Address?
+What should be specified as the target system: the hostname or the IP address?
+Without a doubt, I prefer the **IP address** for these reasons:
+:white_check_mark: Works even with a DNS outage.<br>
+:white_check_mark: No DNS lookup delay (faster).<br>
+:white_check_mark: No DNS cache issues.<br>
+:white_check_mark: Unique (no A/AAAA record chaos).<br>
+:white_check_mark: Independent of external services.<br>
+
 ### Monitoring Memory
 We are interested in the available **free RAM**. We want to know what percentage is still available.
 
