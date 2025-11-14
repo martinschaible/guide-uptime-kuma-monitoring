@@ -59,6 +59,7 @@ I find some of the default values ​​for an SNMP monitor to be far too low. M
 :small_blue_diamond: The value of the **Heartbeat Interval** field is set to **90 seconds**.<br>
 :small_blue_diamond: The value of the **Retries** field is set to **5**<br>
 :small_blue_diamond: The value of the **Heartbeat Retry** field is set to **60 seconds**.<br>
+:small_blue_diamond: We will leave the **Port** and the **SNMP version** at their default values.<br>
 
 :small_blue_diamond: A Monitor is checked every **90 seconds**<br>
 :small_blue_diamond: If an error occurs, the monitor is retested **5 times** every **60 seconds**.<br>
@@ -104,7 +105,6 @@ This value should be approximately the same as the value of *free* from the prev
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
 :small_blue_diamond: You could use **Free Memory** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
-:small_blue_diamond: We will leave the **Port** and the **SNMP version** at their default values.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.4.1.2021.4.6.0** as the **OID (Object Identifier)**.<br>
 
@@ -136,7 +136,6 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
 :small_blue_diamond: You could use **CPU Load** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
-:small_blue_diamond: We will leave the **Port** and the **SNMP version** at their default values.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.4.1.2021.10.1.3.2** as the **OID (Object Identifier)**.<br>
 
@@ -219,7 +218,6 @@ Now let's create the monitor:
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
 :small_blue_diamond: You could use **Free Diskspace** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
-:small_blue_diamond: We will leave the **Port* and the **SNMP version** at their default values.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.2.1.25.2.3.1.6.31** as the **OID (Object Identifier)**.<br>
 
