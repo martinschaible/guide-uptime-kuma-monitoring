@@ -23,11 +23,9 @@ Before we begin monitoring, let's start with some organizational steps. To keep 
 First, we'll add a simple **ping** to each server. This is the simplest way to tell if a device is alive.
 
 :small_blue_diamond: Create a new **Monitor** of type **Ping**.<br>
-:small_blue_diamond: Enter the **Hostname**.<br>
+:small_blue_diamond: Enter the **IP address** of the server as the **Hostname**.<br>
 :small_blue_diamond: I increased the **Heartbeat Interval** to *90 Seconds*. That's more than enough and reduces the load and network traffic a bit.<br>
 :small_blue_diamond: To minimize false alarms, I increased the **Retries** value to **5**. I left the **Heartbeat Retry Interval** at *60 seconds*.<br>
-
-:point_right:I prefer to use the **IP address** instead of the hostname. Why? The hostname might temporarily be unresolvable by the DNS. That would create a false alarm and raise blood pressure unnecessarily.<br>
 
 :point_right: With this configuration, a ping alert will be triggered if no response occurs within 5 minutes.<br>
 :point_right: This allows, for example, a server restart without triggering any alerts.<br>
