@@ -60,10 +60,13 @@ I find some of the default values ​​for an SNMP monitor to be far too low. M
 :small_blue_diamond: The value of the **Retries** field is set to *5*<br>
 :small_blue_diamond: The value of the **Heartbeat Retry** field is set to *60 seconds*.<br>
 
-:point_right: A Monitor is checked every *90 seconds*. If an error occurs, the monitor is retested *5 times* every *60 seconds*. An alarm is triggered after *5 minutes*.<br>
+:small_blue_diamond: A Monitor is checked every *90 seconds*<br>
+:small_blue_diamond: If an error occurs, the monitor is retested *5 times* every *60 seconds*.<br>
+:small_blue_diamond: An alarm is triggered after *5 minutes*.<br>
 
 ### Hostname or IP Address?
 What should be specified as the target system: the hostname or the IP address?
+
 Without a doubt, I prefer the **IP address** for these reasons:
 :white_check_mark: Works even with a DNS outage.<br>
 :white_check_mark: No DNS lookup delay (faster).<br>
@@ -359,11 +362,12 @@ Therefore, it's necessary to use the **Custom Message Template**.
 :bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. But that's acceptable for free software.<br>
 
 ## Links
-:link: [Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)
-:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
-:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
+:link: [Available Memory - Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)<br>
+:link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)<br>
+:link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)<br>
 
 ----
 :collision: If you find a mistake or any text is not understandable, please open an issue.
+
 
 <p align="center">Made with :heart: and :coffee:</p>
