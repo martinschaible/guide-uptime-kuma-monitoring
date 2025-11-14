@@ -45,8 +45,6 @@ I'm choosing one website per server, each with either an online store or a CMS l
 :small_blue_diamond: In the **Heartbeat Interval** field, I set the value to *300 seconds*.<br>
 :small_blue_diamond: I leave the **Retries** value at *1* and the **Heartbeat Retry** value at *60*.<br>
 
-:exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/Websites*<br>
-
 :point_right: I don't see the point in checking the website every minute. That only increases the chance of false alarms.<br>
 :point_right: With this configuration, an alarm is triggered after **10 minutes**. After that, checks are performed every minute.<br>
 :point_right: This allows for brief website maintenance without causing panic.<br>
@@ -104,7 +102,7 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose **\>**<br>
 
-:exclamation: We store this monitor under **Monitor Group** *\<ServerName\>/SNMP*<br>
+:exclamation: The monitor can now be saved.<br>
 
 Recommendation for 20% (Warning):<br>
 :small_orange_diamond:  4 GByte - Value: 729000<br>
@@ -148,6 +146,9 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 :small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
 
 :exclamation: The monitor can now be saved.<br>
+
+:question: Wait a minute: Why is the condition **smaller than** and not **greater than**? That's Kuma logic:<br>
+
 
 :link: [Description for OID 1.3.6.1.4.1.2021.10.1.3.2](https://oidref.com/1.3.6.1.4.1.2021.10.1.3.2)
 
