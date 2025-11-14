@@ -30,7 +30,7 @@ First, we'll add a simple **ping** to each server. This is the simplest way to t
 :point_right: With this configuration, a ping alert will be triggered if no response occurs within 5 minutes.<br>
 :point_right: This allows, for example, a server restart without triggering any alerts.<br>
 
-:exclamation: We save the ping monitor directly in the server's group.
+:point_right: We save the ping monitor directly in the server's group.
 
 ## Monitoring Websites
 From a technical perspective, what kind of websites should be monitored? The database could fail, the web server could malfunction, or the software could have a problem.
@@ -47,7 +47,7 @@ I'm choosing one website per server, each with either an online store or a CMS l
 :point_right: With this configuration, an alarm is triggered after **10 minutes**. After that, checks are performed every minute.<br>
 :point_right: This allows for brief website maintenance without causing panic.<br>
 
-:exclamation: Some websites cannot be analyzed using a keyword. In those cases, I use the simple monitor type **HTTP(s)**.<br>
+:point_right: Some websites cannot be analyzed using a keyword. In those cases, I use the simple monitor type **HTTP(s)**.<br>
 
 ## Monitoring with SNMP 
 Now it gets interesting and also a bit complicated. Generally speaking, SNMP is a pain in the ass.
@@ -109,7 +109,7 @@ We now set the condition under which an alarm is triggered. I've chosen *20%*, w
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose **\>**<br>
 
-:exclamation: The monitor can now be saved.<br>
+:point_right: It's about time to save the monitor.<br>
 
 Recommendation for 20% (Warning):<br>
 :small_orange_diamond:  4 GByte - Value: 729000<br>
@@ -152,7 +152,7 @@ The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>Wi
 :small_blue_diamond: Enter the appropriate value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **smaller than**, choose **\<**<br>
 
-:exclamation: The monitor can now be saved.<br>
+:point_right: The monitor can now be saved.<br>
 
 :question: Wait a minute: Why is the condition **smaller than** and not **greater than**? That's Kuma logic:<br>
 
@@ -227,7 +227,7 @@ Now let's create the monitor:
 :small_blue_diamond: Enter the calculated value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose **\>**<br>
 
-:exclamation: The monitor can now be saved.<br>
+:point_right: The monitor can now be saved.<br>
 
 ### Monitoring systemd Services
 This requires preparation on the target servers. First, we need to find out the names of the different processes we want to monitor. To do this, check which processes are running:
@@ -340,7 +340,7 @@ Setting the condition is incredibly simple:
 
 :small_blue_diamond: The condition is **not equal**, choose **!=**<br>
 
-:exclamation: The monitor can now be saved.<br>
+:point_right: The monitor can now be saved.<br>
 
 :link: [Description for OID 1.3.6.1.4.1.2021.2.1.5](https://oidref.com/1.3.6.1.4.1.2021.2.1.5)
 
