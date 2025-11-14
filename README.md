@@ -348,6 +348,8 @@ Therefore, it's necessary to use the **Custom Message Template**.
 :small_blue_diamond: Enable **Use custom message template**<br>
 :small_blue_diamond: For Telegram, I select **MarkdownV2** as the message format.<br>
 
+... to be continued soon.
+
 ## Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
 
