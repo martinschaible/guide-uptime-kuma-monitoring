@@ -218,7 +218,7 @@ Now let's create the monitor:
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.2.1.25.2.3.1.6.31** as the **OID (Object Identifier)**.<br>
 
-:point_right: We take 20% of the **total size in allocation units*<br>
+:point_right: We take **80%** of the **total size in allocation units*<br>
 
 :small_blue_diamond: Enter the calculated value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose **\>**. Remember the *Uptime Kuma SNMP logic*, as described above.<br>
