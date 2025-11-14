@@ -194,13 +194,11 @@ HOST-RESOURCES-MIB::hrStorageDescr.54 = STRING: /run/user/0
 ```
 We are interested in index **31**.
 
-Now nothing stands in our way of querying three data sets.
-The following three OIDs return the **total size in allocation units**, the **used allocation units** and the **allocation unit size (in bytes)**.
+Now we check the system for the OIDs **total size in allocation units** and the **used allocation units**.
 
 ```
 snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.5.31
 snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.6.31
-snmpget -v2c -c <SNMPCommunity> localhost 1.3.6.1.2.1.25.2.3.1.4.31
 ```
 
 The result:
@@ -208,10 +206,9 @@ The result:
 ```
 HOST-RESOURCES-MIB::hrStorageSize.31 = INTEGER: 19649974
 HOST-RESOURCES-MIB::hrStorageUsed.31 = INTEGER: 840584
-HOST-RESOURCES-MIB::hrStorageAllocationUnits.31 = INTEGER: 4096 Bytes
 ```
 
-For the monitor in Kuma, we use the OID of the **used allocation units** and calculate the threshold from the "total size in allocation units" for 80% utilization.
+For the monitor in Kuma, we use the OID of the **used allocation units** and calculate the threshold from the **total size in allocation units** for 80% utilization.
 
 Now let's create the monitor:
 
