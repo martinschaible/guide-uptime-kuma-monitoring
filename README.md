@@ -16,8 +16,9 @@ Before we begin monitoring, let's start with some organizational steps. To keep 
 :collision: Unfortunately, this has an inexplicable drawback: A monitor of type **Group** is treated as a normal monitor.<br>
 :collision: If one monitor in a group goes into alarm mode, the parent group also goes into alarm mode.
 
-:point_right: You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled. We disable *notifications* in every group.<br>
-:point_right: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
+You probably already have **Notifications** set up that have *Default enabled* and *Apply on all existing monitors* enabled.<br>
+:white_check_mark:We disable *notifications* in every group.<br>
+:white_check_mark: You can leave all other values ​​in the group as they are. At first, I thought these values ​​would be inherited by new objects. Unfortunately, that's not the case.
 
 ## Ping
 First, we'll add a simple **ping** to each server. This is the simplest way to tell if a device is alive.
@@ -27,8 +28,8 @@ First, we'll add a simple **ping** to each server. This is the simplest way to t
 :small_blue_diamond: I increased the **Heartbeat Interval** to *90 Seconds*. That's more than enough and reduces the load and network traffic a bit.<br>
 :small_blue_diamond: To minimize false alarms, I increased the **Retries** value to **5**. I left the **Heartbeat Retry Interval** at *60 seconds*.<br>
 
-:point_right: With this configuration, a ping alert will be triggered if no response occurs within 5 minutes.<br>
-:point_right: This allows, for example, a server restart without triggering any alerts.<br>
+:white_check_mark: With this configuration, a ping alert will be triggered if no response occurs within 5 minutes.<br>
+:white_check_mark: This allows, for example, a server restart without triggering any alerts.<br>
 
 :point_right: We save the ping monitor directly in the server's group.
 
@@ -139,11 +140,11 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 We now set the condition under which an alarm is triggered. This will now be a little more complicated, because the number depends on the number of cores in the processor.
 
 Recommendation:<br>
-:small_orange_diamond: 2 Cores - Value: 3<br>
-:small_orange_diamond: 4 Cores - Value: 5<br>
-:small_orange_diamond: 6 Cores - Value: 7<br>
-:small_orange_diamond: 8 Cores - Value: 10<br>
-:small_orange_diamond: 16 Cores - Value: 20<br>
+:small_blue_diamond: 2 Cores - Value: 3<br>
+:small_blue_diamond: 4 Cores - Value: 5<br>
+:small_blue_diamond: 6 Cores - Value: 7<br>
+:small_blue_diamond: 8 Cores - Value: 10<br>
+:small_blue_diamond: 16 Cores - Value: 20<br>
 
 The rule of thumb is: number of cores + 25%, rounded up to a whole number.<br>With these values, a CPU is already operating under a fairly heavy, but manageable load.<br>
 
