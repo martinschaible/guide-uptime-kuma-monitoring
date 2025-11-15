@@ -1,5 +1,5 @@
 ## Uptime Kuma is here!
-In this article, you'll learn how to monitor websites and servers using **Uptime Kuma**.
+In this article, you'll learn how to monitor websites and servers using **Uptime Kuma**. This document refers to version **2.02**.
 
 Monitoring a server using **SNMP** isn't exactly modern. Specialized monitoring software solves this problem with agents that are installed on the target system.
 
@@ -358,7 +358,7 @@ Therefore, it's necessary to use the **Custom Message Template**.
 
 ## Disadvantages, minor problems
 :bomb: Uptime Kuma receives the SNMP data in **JSON format** and treats all values ​​as **strings**. This works fine until the values ​​are in decimal format. Then, comparisons become inaccurate. This affects, for example, the monitor for CPU load. The value might be **2.45**, which isn't suitable for string comparison. In that case, only the value **2** remains.<br>
-:bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. But that's acceptable for free software.<br>
+:bomb: SNMP monitoring with Uptime Kuma is more of a nice-to-have feature and can't compete with proper SNMP monitoring. There are simply some important things missing to make SNMP monitoring easier and more reliable. But that's okay. Uptime Kuma's core competency is website monitoring.<br>
 
 ## Links
 :link: [Available Memory - Description for OID 1.3.6.1.4.1.2021.4.6](https://oidref.com/1.3.6.1.4.1.2021.4.6)<br>
