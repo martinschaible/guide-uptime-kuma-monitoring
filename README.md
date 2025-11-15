@@ -24,6 +24,7 @@ You probably already have **Notifications** set up that have *Default enabled* a
 First, we'll add a simple **ping** to each server. This is the simplest way to tell if a device is alive.
 
 :small_blue_diamond: Create a new **Monitor** of type **Ping**.<br>
+:small_blue_diamond: Enter **Ping <HostName>** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter the **IP address** of the server as the **Hostname**.<br>
 :small_blue_diamond: I increased the **Heartbeat Interval** to *90 Seconds*. That's more than enough and reduces the load and network traffic a bit.<br>
 :small_blue_diamond: To minimize false alarms, I increased the **Retries** value to **5**. I left the **Heartbeat Retry Interval** at *60 seconds*.<br>
@@ -56,6 +57,7 @@ Now it gets interesting and also a bit complicated. Generally speaking, SNMP is 
 I assume you've already configured SNMP on the servers. **UDP port 161** must be open on the firewall. I'm limiting this to the IP address of the server running Uptime Kuma.
 
 I find some of the default values ​​for an SNMP monitor to be far too low. My values ​​are:<br>
+:small_blue_diamond: The **Friendly Name** should always include the **Hostname** of the target server. This is to avoid silly problems with notifications.<br>
 :small_blue_diamond: The value of the **Heartbeat Interval** field is set to **90 seconds**.<br>
 :small_blue_diamond: The value of the **Retries** field is set to **5**<br>
 :small_blue_diamond: The value of the **Heartbeat Retry** field is set to **60 seconds**.<br>
@@ -103,7 +105,7 @@ UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 1005112 kB
 This value should be approximately the same as the value of *free* from the previous command.
 
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
-:small_blue_diamond: You could use **Free Memory** as the **Friendly Name**.<br>
+:small_blue_diamond: You could use **Free Memory <HostName>** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.4.1.2021.4.6.0** as the **OID (Object Identifier)**.<br>
@@ -134,7 +136,7 @@ UCD-SNMP-MIB::laLoad.2 = STRING: 1.04
 ```
 
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
-:small_blue_diamond: You could use **CPU Load** as the **Friendly Name**.<br>
+:small_blue_diamond: You could use **CPU Load <HostName>** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.4.1.2021.10.1.3.2** as the **OID (Object Identifier)**.<br>
@@ -213,7 +215,7 @@ For the monitor in Kuma, we use the OID of the **used allocation units** and cal
 Now let's create the monitor:
 
 :small_blue_diamond: Now let's create a new monitor of type **SNMP**.<br>
-:small_blue_diamond: You could use **Free Diskspace** as the **Friendly Name**.<br>
+:small_blue_diamond: You could use **Free Diskspace <HostName>** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
 :small_blue_diamond: Enter **1.3.6.1.2.1.25.2.3.1.6.31** as the **OID (Object Identifier)**.<br>
@@ -326,7 +328,7 @@ The complete OID is then: **1.3.6.1.4.1.2021.2.1.5.5**
 Now let's create a new monitor. Let's use **nginx** (index 9) as an example:
 
 :small_blue_diamond: Create a new monitor of type **SNMP**.<br>
-:small_blue_diamond: You could use **Service nginx** as the **Friendly Name**.<br>
+:small_blue_diamond: You could use **Service nginx <HostName>** as the **Friendly Name**.<br>
 :small_blue_diamond: Enter your server's **IP address** as the **Hostname**.<br>
 :small_blue_diamond: We will leave the **Port** and the **SNMP version** at their default values.<br>
 :small_blue_diamond: Now enter the name of your **SNMP community** in the **Community String** field.<br>
