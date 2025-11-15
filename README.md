@@ -8,7 +8,7 @@ Smaller companies with just a few servers and limited budgets often prefer to av
 :collision: To be able to react quickly to errors and failures, a few checks are sufficient, which can be accomplished with SNMP.
 
 ## Basics
-Before we begin monitoring, let's start with some organizational steps. To keep track of everything, it makes sense to store the different sensors in appropriate *folders*. We use a **Group Monitor* for each one:
+Before we begin monitoring, let's start with some organizational steps. To keep track of everything, it makes sense to store the different sensors in appropriate **folders**. We use a **Group Monitor** for each one:
 
 :small_blue_diamond: Create a new **Monitor** of type **Group** for each server. Use the server name as the **Friendly Name**.<br>
 :small_blue_diamond: Below this group, create the groups **SNMP** and **Websites**.<br>
