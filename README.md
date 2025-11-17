@@ -1,9 +1,7 @@
 ## Uptime Kuma is here!
 In this article, you'll learn how to monitor websites and servers using **Uptime Kuma**. This document refers to version **2.02**.
 
-Monitoring a server using **SNMP** isn't exactly modern. Specialized monitoring software solves this problem with agents that are installed on the target system.
-
-Smaller companies with just a few servers and limited budgets often prefer to avoid expensive and overly complex monitoring software.
+Monitoring with **SNMP** isn't exactly convenient or modern, but it works. A comprehensive monitoring software would simplify things, but for just a few servers, proper monitoring software is usually too complex and time-consuming.
 
 :collision: To be able to react quickly to errors and failures, a few checks are sufficient, which can be accomplished with SNMP.
 
