@@ -109,6 +109,8 @@ This value should be approximately the same as the value of *free* from the prev
 :small_blue_diamond: Enter **1.3.6.1.4.1.2021.4.6.0** as the **OID (Object Identifier)**.<br>
 
 We now set the condition under which an alarm is triggered. I've chosen **20%**, which can be considered a *warning* but not yet a *critical* level.
+It's possible that a **20% limit** might also trigger false alarms. It's entirely possible that some service might temporarily need more memory.
+In that case, I would reduce it to **15%** or even just **10%**.
 
 :small_blue_diamond: Grab your calculator and calculate *20%* of the **total Memory**. Enter this value as the **Expected Value**.<br>
 :small_blue_diamond: The condition is **greater than**, choose **\>**<br>
@@ -339,16 +341,31 @@ Setting the condition is incredibly simple:
 :point_right: The monitor can now be saved.<br>
 
 ## Notification
-Notifications via Telegram, for example, are incomplete. This is likely because I've organized the monitors into groups.
-:point_right: When an SNMP monitor triggers an alarm, the originating host isn't displayed.
+I don't really like the default notifications. Therefore, it would be great if we could create our own template using the **Custom Message Template**.
 
-Therefore, it's necessary to use the **Custom Message Template**.
+These variables are available for us to insert into the template:
 
-:small_blue_diamond: Open the **Notification** entry under **Settings** and select your previously created profile.<br>
-:small_blue_diamond: Enable **Use custom message template**<br>
-:small_blue_diamond: For Telegram, I select **MarkdownV2** as the message format.<br>
+:small_orange_diamond: **{{ msg }}**: message of the notification.<br>
+:small_orange_diamond: **{{ name }}**: service name.<br>
+:small_orange_diamond: **{{ status }}: status.<br>
+:small_orange_diamond: **{{ hostnameOrURL }}**: hostname or URL.<br>
+:small_orange_diamond: **{{ heartbeatJSON }}**: object describing the heartbeat (only available for UP/DOWN notifications).<br>
+:small_orange_diamond: **{{ monitorJSON }}**: object describing the monitor (only available for UP/DOWN/Certificate expiry notifications).<br>
 
-... to be continued soon.
+I created a template for Telegram. Unfortunately, it didn't work well at all. When I selected **MarkupV2** under **Message Format**, there were constant problems and the message wasn't sent. I then selected **Plain Text**.
+
+I then chose a very simple option:
+```
+{{name}} is {{status}}
+{{msg}}
+```
+
+At least with the SNMP monitors, the variable **hostnameOrURL** never worked. Its content remained empty.
+Now you can see why I included the server in the **Friendly Name**. It will then appear as **name**.
+The message really doesn't look good. What's with those stupid brackets?.
+
+In my opinion, the notifications are not implemented well enough, or I'm doing something wrong.
+
 
 ## Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
