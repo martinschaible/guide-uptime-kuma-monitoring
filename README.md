@@ -347,7 +347,7 @@ These variables are available for us to insert into the template:
 
 :small_orange_diamond: **{{ msg }}**: message of the notification.<br>
 :small_orange_diamond: **{{ name }}**: service name.<br>
-:small_orange_diamond: **{{ status }}: status.<br>
+:small_orange_diamond: **{{ status }}**: status.<br>
 :small_orange_diamond: **{{ hostnameOrURL }}**: hostname or URL.<br>
 :small_orange_diamond: **{{ heartbeatJSON }}**: object describing the heartbeat (only available for UP/DOWN notifications).<br>
 :small_orange_diamond: **{{ monitorJSON }}**: object describing the monitor (only available for UP/DOWN/Certificate expiry notifications).<br>
@@ -365,7 +365,6 @@ Now you can see why I included the server in the **Friendly Name**. It will then
 The message really doesn't look good. What's with those stupid brackets?.
 
 In my opinion, the notifications are not implemented well enough, or I'm doing something wrong.
-
 
 ## Tips
 :bulb: Creating these monitors for several servers takes time and patience. You can significantly simplify this process by cloning the respective monitor. Only the *IP address* and the *Expected Value* need to be adjusted.<br>
